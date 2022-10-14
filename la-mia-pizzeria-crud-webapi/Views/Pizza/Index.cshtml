@@ -1,0 +1,64 @@
+﻿@using la_mia_pizzeria_crud_mvc.Models
+@model List<Pizza>
+@{
+	
+}
+
+<h2>Menu Pizze</h2>
+
+<div class="d-flex flex-wrap gap-3">
+
+	
+		
+
+		
+
+		@foreach (Pizza pizza in Model)
+		{
+			/*
+			<div class="d-flex flex-column align-content-center justify-content-center">
+				<div style="width: 200px;" class="align-self-center">
+					<img class="w-100" src="@pizza.Foto">
+				</div>
+				<h4 class="align-self-center">@pizza.Nome</h4>
+				<p class="align-self-center">@pizza.Descrizione</p>
+				<p class="align-self-center">@pizza.Prezzo €</p>
+				<a class="align-self-center" href="">Edit</a>
+				<form class="align-self-center" method="POST" asp-action="Delete" asp-route-id="@pizza.Id">
+					<button type="submit">Delete</button>
+				</form> 
+			</div>
+			*/
+
+				<div class="card" style="width: 18rem;">
+					<img class="card-img-top" src="@pizza.Foto" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">@pizza.Nome</h5>
+						<p class="card-text">@pizza.Descrizione</p>
+						<p class="card-text">@pizza.Prezzo €</p>
+						<p class="card-text">@pizza.Category.Name</p>
+						<form class="" method="POST" asp-action="Delete" asp-route-id="@pizza.Id">
+							<button class="btn btn-secondary" type="submit">Delete</button>
+						</form>
+						<ul>
+							@foreach(Ingredienti ingredienti in pizza.Ingredients){
+								<li>@ingredienti.Name</li>
+							}
+						</ul>
+
+						<a href="@Url.Action("Update","Pizza", new{ id = pizza.Id})" class="btn btn-primary mt-3">Edit</a>
+					</div>
+				</div>
+			
+
+			
+		}
+
+	
+
+</div>
+
+<style lang="scss" scoped>
+		
+</style>
+
