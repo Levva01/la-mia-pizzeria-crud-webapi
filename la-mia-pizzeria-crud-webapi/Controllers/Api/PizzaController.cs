@@ -1,5 +1,7 @@
 ﻿using la_mia_pizzeria_crud_mvc.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Graph;
 using System.Security.Cryptography.X509Certificates;
 
 namespace la_mia_pizzeria_crud_mvc.Controllers.Api
@@ -16,11 +18,29 @@ namespace la_mia_pizzeria_crud_mvc.Controllers.Api
 
         }
 
-        public IActionResult Get()
+        [HttpGet]
+        public IActionResult Get(string? title)
         {
-            List<Pizza> pizze = context.Pizze.ToList();
+            IQueryable<Pizza> pizze;
 
-            return Ok(pizze);
+            if (title != null)
+            {
+                pizze = context.Pizze.Where(post => post.Nome.ToLower().Contains(title.ToLower()));
+            }
+            else
+            {
+                pizze = context.Pizze;
+            }
+
+            return Ok(pizze.ToList<Pizza>());
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            Pizza pizza = context.Pizze.Where(p => p.Id == id).FirstOrDefault();
+
+            return Ok(pizza);
         }
     }
 }

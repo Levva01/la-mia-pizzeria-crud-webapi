@@ -31,6 +31,11 @@ namespace la_mia_pizzeria_post.Controllers
             return View(pizzeCategories);
         }
 
+        public IActionResult Details(int id)
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(PizzeCategories formPizza)
