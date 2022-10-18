@@ -117,5 +117,10 @@ namespace la_mia_pizzeria_post.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
     }
 }

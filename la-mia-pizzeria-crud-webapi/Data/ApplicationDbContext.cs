@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection.Emit;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using la_mia_pizzeria_crud_webapi.Models;
 
 public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 {
@@ -20,6 +21,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Pizza>? Pizze { get; set; }
     public DbSet<Category>? Categories { get; set; }
     public DbSet<Ingredienti>? Ingredients { get; set; }
+    public DbSet<Message> Messages { get; set; }
     /*
     public ApplicationDbContext()
     {
